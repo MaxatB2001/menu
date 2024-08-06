@@ -1,7 +1,8 @@
+import { Link } from "expo-router";
 import {Text} from "react-native"
 
 export default function HomeScreen() {
   return (
-    <Text className="text-3xl">Welcome!</Text>
+    <Link href="/waiter" className="text-3xl">Welcome!</Link>
   );
 }

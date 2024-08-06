@@ -31,6 +31,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "aebaba4b-f5db-44f8-bc28-8fa3faa8e010"
+      }
+    },
+    "owner": "maxat"
   }
 }
