@@ -1,5 +1,7 @@
-export interface MenuItem {
+export interface MenuItemModel {
     name: string;
-    price: string;
-    categoryUid: string;
+    price: number;
+    categoryUid?: string;
+    imageUrl: string;
+    uid: string
 }
