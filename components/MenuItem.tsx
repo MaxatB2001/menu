@@ -32,7 +32,7 @@ const MenuItem = ({ menuItem }: Props) => {
         source={{ uri: menuItem.imageUrl }}
       />
       <Text>{menuItem.price} р</Text>
-      <Text>{menuItem.name}</Text>
+      <Text className="font-inter">{menuItem.name}</Text>
       {itemInCart ? (
           <View className="flex-row justify-center items-center bg-stone-200 rounded-lg">
             <TouchableOpacity onPress={handleRemove}>

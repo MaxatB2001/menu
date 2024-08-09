@@ -7,6 +7,7 @@ import React, {
   useEffect,
 } from "react";
 import { MenuItemModel } from "@/models/menuItem.model";
+import { CartItem } from "@/models/cart-item.model";
 
 interface CartContextProps {
   cart: CartItem[];
@@ -14,10 +15,6 @@ interface CartContextProps {
   isItemInCart: (itemUid: string) => boolean;
   getItemQuantity: (itemUid: string) => number;
   removeFromCart: (itemUid: string) => void;
-}
-
-interface CartItem extends MenuItemModel {
-  quantity: number;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
