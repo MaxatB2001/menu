@@ -1,27 +1,53 @@
 import MenuItemsList from "@/components/MenuItemsList";
+import Slider from "@/components/Slider";
 import { MenuItemModel } from "@/models/menuItem.model";
-import { useState } from "react";
-import {SafeAreaView} from "react-native"
-
-const mockMenuItems: MenuItemModel[] = [
-  {uid: "123",name: "Бургер", price: 400, imageUrl: "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg"},
-  {uid: "1234",name: "Бургер2", price: 400, imageUrl: "https://img.freepik.com/premium-photo/amazing-delicious-cheese-burger_727939-299.jpg"},
-  {uid: "12344",name: "Бургер2", price: 400, imageUrl: "https://img.freepik.com/premium-photo/amazing-delicious-cheese-burger_727939-299.jpg"},
-  {uid: "123464",name: "Бургер2", price: 400, imageUrl: "https://img.freepik.com/premium-photo/amazing-delicious-cheese-burger_727939-299.jpg"},
-  {uid: "1234621",name: "Бургер2", price: 400, imageUrl: "https://img.freepik.com/premium-photo/amazing-delicious-cheese-burger_727939-299.jpg"},
-  {uid: "1234216",name: "Бургер2", price: 400, imageUrl: "https://img.freepik.com/premium-photo/amazing-delicious-cheese-burger_727939-299.jpg"},
-  {uid: "1233346",name: "Бургер2", price: 400, imageUrl: "https://img.freepik.com/premium-photo/amazing-delicious-cheese-burger_727939-299.jpg"},
-  {uid: "12346421",name: "Бургер2", price: 400, imageUrl: "https://img.freepik.com/premium-photo/amazing-delicious-cheese-burger_727939-299.jpg"},
-  {uid: "12312346",name: "Бургер2", price: 400, imageUrl: "https://img.freepik.com/premium-photo/amazing-delicious-cheese-burger_727939-299.jpg"}
-]
-
+import { filterMenuItemsByMeal } from "@/utils/current-meal-time";
+import { fetchAndStoreMenuItems } from "@/utils/fetchAndStoreData";
+import { getDataFromStorage } from "@/utils/storage";
+import { useEffect, useState } from "react";
+import { SafeAreaView, View } from "react-native";
+import { useSearch } from "./contexts/search.context";
 
 export default function HomeScreen() {
-  const [menuItems, setMenuItems] = useState<MenuItemModel[]>(mockMenuItems)
+  const [menuItems, setMenuItems] = useState<MenuItemModel[]>([]);
+  const { searchText } = useSearch();
+
+  const testdata = [
+    {
+      title: "title 1",
+      imageUrl:
+        "https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png",
+    },
+    {
+      title: "Title [2",
+      imageUrl:
+        "https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png",
+    },
+    {
+      title: "Title [2",
+      imageUrl:
+        "https://biggardenfurniture.com.au/wp-content/uploads/2018/08/img-placeholder.png",
+    },
+    
+  ];
+
+  useEffect(() => {
+    console.log(searchText)
+    fetchAndStoreMenuItems().then((menuItems: MenuItemModel[]) => {
+      const filteredItems = filterMenuItemsByMeal(menuItems)
+      const items = searchText
+      ? filteredItems.filter((item) =>
+          item.name.toLowerCase().includes(searchText.toLowerCase())
+        )
+      : filteredItems;
+
+    setMenuItems(items);
+    });
+  }, [searchText]);
 
   return (
-    <SafeAreaView >
-      <MenuItemsList menuItems={menuItems} />
+    <SafeAreaView>
+      <MenuItemsList headerComponent={<Slider items={testdata}/>} menuItems={menuItems} />
     </SafeAreaView>
   );
 }

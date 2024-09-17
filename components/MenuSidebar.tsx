@@ -8,9 +8,10 @@ export interface Props {
 }
 
 const MenuSidebar = ({categories}: Props) => {
+  console.log("MENU SIDEVAR")
   return (
-    <View className='bg-white h-full p-3'>
-      <FlatList showsVerticalScrollIndicator={false} ItemSeparatorComponent={() => <View className="h-3" />} data={categories} keyExtractor={(item) => item.uid} renderItem={({item}) => <Category category={item}/>}/>
+    <View className='bg-white h-full px-4 pb-4'>
+      <FlatList showsVerticalScrollIndicator={false}  data={categories} keyExtractor={(item) => item.uid} renderItem={({item}) => <Category category={item}/>}/>
     </View>
   )
 }

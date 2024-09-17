@@ -1,5 +1,6 @@
 export interface MenuCategory {
     uid: string;
     name: string;    
-    imageUrl: string
+    imageUrl?: string
+    subCategories?: MenuCategory[]
 }

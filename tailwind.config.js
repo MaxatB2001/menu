@@ -4,7 +4,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter-Regular", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
+        interbold: ["Inter-Bold", "sans-serif"],
+        greyqo: ["GreyQo", "sans-serif"],
+        intersemibold: ["Inter-Semi-Bold", "sans-serif"],
+        interregular: ["Inter-Regular", "sans-serif"],
+        
       }
     },
 

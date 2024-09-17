@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Button } from "react-native";
-import React from "react";
+import React, { ReactElement } from "react";
 import { MenuItemModel } from "../models/menuItem.model";
 import MenuItem from "./MenuItem";
 import { Link } from "expo-router";
@@ -8,19 +8,20 @@ import { useCart } from "@/app/contexts/cart.context";
 
 interface Props {
   menuItems: MenuItemModel[];
+  headerComponent?: ReactElement
 }
 
-const MenuItemsList = ({ menuItems }: Props) => {
+const MenuItemsList = ({ menuItems, headerComponent }: Props) => {
 
     return (
-   <View className="bg-gray-100">
+   <View className="h-full">
      <FlatList
       data={menuItems}
+      ListHeaderComponent={headerComponent}
       renderItem={({ item }) => <MenuItem key={item.uid} menuItem={item} />}
       keyExtractor={(item) => item.uid}
-      numColumns={2}
-      columnWrapperStyle={{ justifyContent: "space-between" }} // Tailwind styles for column wrapper
-      contentContainerStyle={{ paddingHorizontal: 8, paddingTop: 20  }}
+      numColumns={3}
+      columnWrapperStyle={{ justifyContent:"center" }} 
       showsVerticalScrollIndicator={false}
     />
    </View>
