@@ -39,6 +39,7 @@ const MenuItemScreen = () => {
   }, [menuItem.price, selectedOptions]);
 
   const handleAddToCart = () => {
+    navigation.goBack()
     addToCart({ ...menuItem, price: totalPrice });
   };
 

@@ -62,7 +62,6 @@ export default function RootLayout() {
     
     fetchAndStoreCategories()
       .then((res) => {
-        console.log("DATA LOADED");
         setCategories(res)
       })
       .catch((err) => {
@@ -109,6 +108,19 @@ export default function RootLayout() {
                     animationTypeForReplace: "push",
                   }}
                 />
+                 <Stack.Screen
+                name="success"
+                options={{
+                  presentation: "card",
+                  gestureEnabled: true,
+                  gestureDirection: "vertical",
+                  animationDuration: 400,
+                  headerShown: false,
+                  animation: "fade_from_bottom",
+                  animationTypeForReplace: "push",
+                }}
+                
+              />
               </Stack>
             </View>
 

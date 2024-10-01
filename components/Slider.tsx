@@ -4,6 +4,7 @@ import SliderItem from "./Slider-item";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import SliderPagingation from "./SliderPagingation";
 import { getCurrentMeal } from "@/utils/current-meal-time";
+import { getFontSize } from "@/utils/getFontSize";
 
 type Prop ={
     items: {title: string, imageUrl: string}[]
@@ -59,7 +60,7 @@ const Slider = ({items}: Prop) => {
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
       />
       <SliderPagingation paginationIndex={paginationIndex} scrollX={scrollX} items={data}/>
-      <Text className="font-interbold text-3xl font-bold" style={{marginLeft: 20}}>Идеально на {mealTypeAliases[currentMeal]}</Text>
+      <Text className="font-interbold font-bold" style={{marginLeft: 20, fontSize: getFontSize(30)}}>Идеально на {mealTypeAliases[currentMeal]}</Text>
     </View>
   );
 };

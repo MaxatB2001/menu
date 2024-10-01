@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import React from 'react';
 import { MenuCategory } from '@/models/menuCategory.model';
 import { usePathname, useRouter } from 'expo-router';
+import { getFontSize } from '@/utils/getFontSize';
 
 interface Props {
     category: MenuCategory;
@@ -25,8 +26,8 @@ const SubCategory = ({ category }: Props) => {
         resizeMode="cover"
       >
         {/* Conditional background overlay */}
-        <View className={`flex-1 items-center justify-center ${currentCategory === category.uid ? 'bg-green-700' : 'bg-black/40'}`}>
-          <Text className="font-interbold  text-white text-lg">{category.name}</Text>
+        <View style={{paddingHorizontal: getFontSize(5)}} className={`flex-1 items-center justify-center ${currentCategory === category.uid ? 'bg-green-700' : 'bg-black/40'}`}>
+          <Text className="font-interbold  text-white" style={{fontSize: getFontSize(18)}}>{category.name}</Text>
         </View>
       </ImageBackground>
     </TouchableOpacity>

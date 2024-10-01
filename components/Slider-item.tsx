@@ -15,6 +15,7 @@ type Props = {
 
 const { width } = Dimensions.get("screen");
 const w = width * 0.6;
+console.log("SCREEN WI ", width)
 
 const SliderItem = ({ item, index, scrollX }: Props) => {
   const rnAnimatedStyle = useAnimatedStyle(() => {
