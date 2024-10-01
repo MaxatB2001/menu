@@ -19,6 +19,12 @@ import TableChoose from "@/components/TableChoose";
 import { SearchProvider } from "./contexts/search.context";
 import { fetchAndStoreCategories, fetchAndStoreData } from "@/utils/fetchAndStoreData";
 
+
+export const unstable_settings = {
+  initialRouteName: '(main)',
+};
+
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -78,62 +84,8 @@ export default function RootLayout() {
 
   return (
     <SafeAreaView className="flex-1">
-      <SearchProvider>
-        <CartProvider>
-          <Header setIsOpen={setIsOpen} />
-          <View className="flex-1 flex-row">
-            {/* MenuSidebar takes up 20% of the screen width */}
-            <View className="flex-[0.2] h-full">
-              <MenuSidebar categories={categories} />
-            </View>
-
-            {/* Slot takes up 60% of the screen width */}
-            <View className="flex-[0.6]">
-              {/* <Slot/> */}
-              <Stack>
-                <Stack.Screen name="index" options={{ headerShown: false }} />
-                <Stack.Screen
-                  name="[category]"
-                  options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                  name="menuItem"
-                  options={{
-                    presentation: "card",
-                    gestureEnabled: true,
-                    gestureDirection: "vertical",
-                    animationDuration: 400,
-                    headerShown: false,
-                    animation: "slide_from_bottom",
-                    animationTypeForReplace: "push",
-                  }}
-                />
-                 <Stack.Screen
-                name="success"
-                options={{
-                  presentation: "card",
-                  gestureEnabled: true,
-                  gestureDirection: "vertical",
-                  animationDuration: 400,
-                  headerShown: false,
-                  animation: "fade_from_bottom",
-                  animationTypeForReplace: "push",
-                }}
-                
-              />
-              </Stack>
-            </View>
-
-            {/* CartSidebar takes up 20% of the screen width */}
-            <View className="flex-[0.2]">
-              <CartSIdebar />
-            </View>
-          </View>
-          <Modal isOpen={isOpen}>
-            <TableChoose tables={tables} setIsOpen={setIsOpen} />
-          </Modal>
-        </CartProvider>
-      </SearchProvider>
+      <Slot/>
     </SafeAreaView>
   );
 }
+

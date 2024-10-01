@@ -29,11 +29,11 @@ const CartSIdebar = () => {
       const message = cart
         .map((item) => `${item.name} (Количесвто: ${item.quantity})`)
         .join("\n");
-      // await sendMessageToTelegram(
-      //   `стол № ${tableNumber} \n Заказ :\n${message} \nОплата ${
-      //     paymentType === "card" ? "картой" : "наличными"
-      //   }`
-      // );
+      await sendMessageToTelegram(
+        `стол № ${tableNumber} \n Заказ :\n${message} \nОплата ${
+          paymentType === "card" ? "картой" : "наличными"
+        }`
+      );
     }
   };
 
@@ -46,9 +46,9 @@ const CartSIdebar = () => {
     <View className="p-4 flex justify-between h-full">
       <View className="flex-1">
         <View className="flex flex-row items-center justify-between pb-2">
-          <Text className="font-interbold text-lg text-gray-700">Счёт</Text>
+          <Text className="font-interbold text-gray-700" style={{fontSize: getFontSize(18)}}>Счёт</Text>
           <TouchableOpacity onPress={() => clearCart()}>
-            <Text className="font-intersemibold text-gray-600">Очистить</Text>
+            <Text className="font-intersemibold text-gray-600" style={{fontSize: getFontSize(14)}}>Очистить</Text>
           </TouchableOpacity>
         </View>
         <FlatList
@@ -59,10 +59,10 @@ const CartSIdebar = () => {
           showsVerticalScrollIndicator={false}
           ListFooterComponent={
             <View className="flex flex-row items-center justify-between border-t-2 border-green-600 py-3 mt-2">
-              <Text className="text-gray-700 text-lg font-interbold">
+              <Text className="text-gray-700 font-interbold" style={{fontSize: getFontSize(18)}}>
                 Всего
               </Text>
-              <Text className="text-lg text-green-600 font-interbold">
+              <Text className="text-green-600 font-interbold" style={{fontSize: getFontSize(18)}}>
                 {cart.reduce(
                   (total, item) => total + item.price * item.quantity,
                   0

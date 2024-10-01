@@ -4,7 +4,7 @@ import { useLocalSearchParams } from "expo-router";
 import { MenuItemModel } from "@/models/menuItem.model";
 import MenuItemsList from "@/components/MenuItemsList";
 import { getDataFromStorage } from "@/utils/storage";
-import { useSearch } from "./contexts/search.context";
+import { useSearch } from "../contexts/search.context";
 import { fetchAndStoreMenuItems } from "@/utils/fetchAndStoreData";
 
 const CurrentCategory = () => {

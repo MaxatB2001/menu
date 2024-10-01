@@ -6,7 +6,7 @@ import { fetchAndStoreMenuItems } from "@/utils/fetchAndStoreData";
 import { getDataFromStorage } from "@/utils/storage";
 import { useEffect, useState } from "react";
 import { SafeAreaView, View } from "react-native";
-import { useSearch } from "./contexts/search.context";
+import { useSearch } from "../contexts/search.context";
 
 export default function HomeScreen() {
   const [menuItems, setMenuItems] = useState<MenuItemModel[]>([]);

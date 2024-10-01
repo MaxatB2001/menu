@@ -10,6 +10,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { MenuItemModel } from "@/models/menuItem.model";
 import { useCart } from "@/app/contexts/cart.context";
+import { getFontSize, verticalScale } from "@/utils/getFontSize";
 
 interface ExtraOptionProps {
   item: MenuItemModel;
@@ -59,10 +60,11 @@ const ExtraOption: React.FC<ExtraOptionProps> = ({ item }) => {
       <Animated.View
         style={{
           borderRadius: 20,
-          width: 160, // 40*4, same as w-40
-          height: 240, // 60*4, same as h-60
+          width: getFontSize(160), // 40*4, same as w-40
+          height: verticalScale(240), // 60*4, same as h-60
           justifyContent: "space-between",
-          padding: 16, // same as p-4
+          paddingHorizontal: getFontSize(16),
+          paddingVertical: verticalScale(16),
           backgroundColor: interpolatedBackgroundColor,
         }}
         className="flex justify-between"
@@ -73,14 +75,15 @@ const ExtraOption: React.FC<ExtraOptionProps> = ({ item }) => {
             style={{
               borderRadius: 20,
               width: "100%",
-              height: 128, // same as h-32
+              height: verticalScale(128), // same as h-32
               objectFit: "cover",
             }}
           />
           <Text
             numberOfLines={2}
             ellipsizeMode="tail"
-            className={`${itemInCart ? 'text-neutral-200' : 'text-gray-700'} text-center text-lg font-intersemibold`}
+            style={{fontSize: getFontSize(18) }}
+            className={`${itemInCart ? 'text-neutral-200' : 'text-gray-700'} text-center font-intersemibold`}
           >
             {item.name}
           </Text>
@@ -93,10 +96,10 @@ const ExtraOption: React.FC<ExtraOptionProps> = ({ item }) => {
               opacity: iconOpacity,
             }}
           >
-            <Ionicons name="checkmark" size={24} color="white" />
+            <Ionicons name="checkmark" size={getFontSize(24)} color="white" />
           </Animated.View>
         ) : (
-          <Text className="text-gray-700 text-center text-lg font-intersemibold">
+          <Text style={{fontSize: getFontSize(18), lineHeight:28 }} className="text-gray-700 text-center font-intersemibold">
             {item.price} ₽
           </Text>
         )}

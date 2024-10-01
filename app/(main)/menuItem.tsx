@@ -9,9 +9,10 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import ExtraOptionsList from "@/components/ExtraOptionsList";
-import { useCart } from "./contexts/cart.context";
+import { useCart } from "../contexts/cart.context";
 import { MenuItemModel } from "@/models/menuItem.model";
 import { Ionicons } from "@expo/vector-icons";
+import { getFontSize, verticalScale } from "@/utils/getFontSize";
 
 const MenuItemScreen = () => {
   const { cart, addToCart } = useCart();
@@ -51,12 +52,12 @@ const MenuItemScreen = () => {
       }}
       showsVerticalScrollIndicator={false}
     >
-      <Image className="w-full h-52" source={{ uri: menuItem.imageUrl }} />
+      <Image className="w-full" style={{height: verticalScale(208)}} source={{ uri: menuItem.imageUrl }} />
       <View
         style={{
           position: "absolute",
-          top: 20,
-          left: 20,
+          top: verticalScale(20),
+          left: getFontSize(20),
           borderRadius: 50,
           overflow: "hidden",
         }}
@@ -65,7 +66,8 @@ const MenuItemScreen = () => {
           onPress={handleClosePress}
           style={{
             backgroundColor: "rgba(0, 0, 0, 0.5)",
-            padding: 10,
+            paddingHorizontal: getFontSize(10),
+            paddingVertical: verticalScale(10),
             borderRadius: 50,
             alignItems: "center",
             justifyContent: "center",
@@ -78,28 +80,30 @@ const MenuItemScreen = () => {
       </View>
 
       <View
-        className="bg-white mx-4 p-6 flex-1"
+        className="bg-white mx-4 flex-1"
         style={{
+          paddingHorizontal: getFontSize(24),
+          paddingVertical: verticalScale(24),
           borderTopEndRadius: 35,
           borderTopLeftRadius: 35,
-          marginTop: -30, // Reduced negative margin
+          marginTop: -verticalScale(30), // Reduced negative margin
           flexGrow: 1, // Ensures it stretches to fill space
           justifyContent: 'space-between' // Distribute items evenly
         }}
       >
         <View>
-          <View className="flex flex-row justify-between items-start mb-4">
+          <View className="flex flex-row justify-between items-start" style={{marginBottom: verticalScale(16)}}>
             <View>
-              <Text className="text-2xl font-interbold">{menuItem.name}</Text>
-              <Text className="text-base font-inter text-slate-500">
+              <Text style={{fontSize: getFontSize(24)}} className="font-interbold">{menuItem.name}</Text>
+              <Text style={{fontSize: getFontSize(16)}} className="font-inter text-slate-500">
                 {menuItem.description}
               </Text>
             </View>
-            <Text className="text-xl font-interbold">{totalPrice} ₽</Text>
+            <Text style={{fontSize: getFontSize(20)}} className="font-interbold">{totalPrice} ₽</Text>
           </View>
 
-          <View className="mb-6">
-            <Text className="font-intersemibold text-xl mb-4">
+          <View style={{marginBottom: verticalScale(24)}}>
+            <Text className="font-intersemibold" style={{fontSize: getFontSize(20), marginBottom: verticalScale(16)}}>
               К этому блюду идеально подойдет:
             </Text>
             <ExtraOptionsList
@@ -111,14 +115,14 @@ const MenuItemScreen = () => {
 
         <TouchableOpacity
           style={{
-            paddingHorizontal: 20,
-            paddingVertical: 10,
+            paddingHorizontal: getFontSize(20),
+            paddingVertical: verticalScale(10),
             borderRadius: 12,
           }}
           className="justify-center items-center bg-green-600 w-full"
           onPress={handleAddToCart}
         >
-          <Text className="text-white font-interbold">Добавить в заказ</Text>
+          <Text style={{fontSize: getFontSize(14)}} className="text-white font-interbold">Добавить в заказ</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

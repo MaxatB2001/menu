@@ -11,6 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useCart } from "@/app/contexts/cart.context";
 import { useSearch } from "@/app/contexts/search.context";
+import { getFontSize, verticalScale } from "@/utils/getFontSize";
 
 type Props = {
   setIsOpen: (bool: boolean) => void;
@@ -42,7 +43,7 @@ const Header = ({ setIsOpen }: Props) => {
           <View className="rounded" style={styles.searchBox}>
             <Ionicons
               name="search"
-              size={20}
+              size={getFontSize(20)}
               color="lightgray"
               style={styles.iconMargin}
             />
@@ -62,11 +63,11 @@ const Header = ({ setIsOpen }: Props) => {
         <View className="flex-[0.2]">
           <View className="pr-4" style={styles.rightContainer}>
             <TouchableOpacity
-              style={{padding: 8}}
+              style={{paddingHorizontal: getFontSize(8), paddingVertical: verticalScale(8)}}
               className="rounded-lg bg-gray-100"
               onPress={() => setIsOpen(true)}
             >
-              <Text className="font-intersemibold">Стол № {tableNumber}</Text>
+              <Text style={{fontSize: getFontSize(14)}} className="font-intersemibold">Стол № {tableNumber}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     // paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingVertical: verticalScale(8),
   },
   iconContainer: {
     flex: 1,
@@ -106,8 +107,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#f3f4f6", // gray-100
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingHorizontal: getFontSize(12),
+    paddingVertical: verticalScale(8),
     width: "100%",
   },
   iconMargin: {
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    fontSize: 16,
+    fontSize: getFontSize(16),
   },
   rightContainer: {
     flex: 1,
@@ -125,8 +126,8 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   image: {
-    height: 32,
-    width: 32,
+    height: verticalScale(32),
+    width: getFontSize(32),
     borderRadius: 16,
   },
 });
